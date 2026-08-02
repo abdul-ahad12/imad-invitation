@@ -10,28 +10,33 @@
 <style>
 /* ══════════════════════════════════════════════
    IMAD ♥ AFSARI — WEDDING INVITATION
-   Emerald · Gold · Ivory · Blush
+   Cream · Blush · Peach · Gold · Soft Sage
    ══════════════════════════════════════════════ */
 :root{
-  --emerald-deep:#0b2e23;
-  --emerald:#124635;
-  --emerald-soft:#1c5a45;
+  --cream:#fdf3e9;
+  --cream-deep:#f8e7d8;
+  --ivory:#fffaf4;
   --gold:#c9a24b;
-  --gold-bright:#e9cf8b;
-  --gold-pale:#f3e6c4;
-  --ivory:#faf6ec;
-  --cream:#f4ecdb;
-  --blush:#e8b4b8;
-  --blush-deep:#c98a90;
-  --ink:#123528;
-  --shadow:0 18px 50px rgba(6,30,22,.35);
+  --gold-bright:#e6c47e;
+  --gold-deep:#a3782c;
+  --blush:#f2bfc4;
+  --blush-soft:#fadde0;
+  --rose:#d98a92;
+  --rose-deep:#b96b74;
+  --peach:#f7cba6;
+  --butter:#f8e3a8;
+  --sage:#9dbb92;
+  --sage-deep:#6d9268;
+  --ink:#4a382c;
+  --ink-soft:#6f5a4a;
+  --shadow:0 18px 44px rgba(163,120,80,.20);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family:'Cormorant Garamond',serif;
   width:100%;max-width:100vw;
-  background:var(--emerald-deep);
+  background:var(--cream);
   color:var(--ink);
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
@@ -49,31 +54,32 @@ body.locked{overflow:hidden;height:100dvh}
   position:fixed;inset:0;z-index:100;
   display:flex;align-items:center;justify-content:center;
   perspective:1200px;
+  background:var(--cream);
 }
 .curtain{
   position:absolute;top:0;bottom:0;width:56%;
   background:
     repeating-linear-gradient(90deg,
-      #0e3a2c 0 14px,
-      #145041 14px 26px,
-      #0b2e23 26px 40px),
-    linear-gradient(180deg,#124635,#0b2e23);
+      #f7d2cd 0 14px,
+      #fdeae0 14px 26px,
+      #efbcb9 26px 40px),
+    linear-gradient(180deg,#fdece1,#f0c3bd 60%,#e6aeae);
   background-blend-mode:multiply;
-  box-shadow:inset 0 0 90px rgba(0,0,0,.75), 0 0 40px rgba(0,0,0,.5);
+  box-shadow:inset 0 0 90px rgba(185,107,116,.30), 0 0 40px rgba(163,120,80,.22);
   transition:transform 2.6s cubic-bezier(.77,0,.18,1);
 }
 .curtain::before{ /* silky vertical sheen folds */
   content:"";position:absolute;inset:0;
   background:repeating-linear-gradient(90deg,
     rgba(255,255,255,0) 0 10px,
-    rgba(233,207,139,.06) 10px 18px,
-    rgba(0,0,0,.28) 18px 34px);
+    rgba(255,255,255,.55) 10px 18px,
+    rgba(185,107,116,.16) 18px 34px);
   animation:curtainSway 6s ease-in-out infinite alternate;
 }
 .curtain::after{ /* gold trim on inner edge */
   content:"";position:absolute;top:0;bottom:0;width:10px;
   background:linear-gradient(180deg,var(--gold-bright),var(--gold),#8a6a25,var(--gold-bright));
-  box-shadow:0 0 18px rgba(201,162,75,.8);
+  box-shadow:0 0 18px rgba(201,162,75,.7);
 }
 .curtain.left{left:0;transform-origin:left center}
 .curtain.left::after{right:0}
@@ -89,16 +95,16 @@ body.locked{overflow:hidden;height:100dvh}
 /* pelmet + garland across the top */
 .pelmet{
   position:absolute;top:0;left:0;right:0;height:64px;z-index:3;
-  background:linear-gradient(180deg,#0b2e23,#145041);
+  background:linear-gradient(180deg,#e8b0ae,#fbe0d6);
   border-bottom:3px solid var(--gold);
-  box-shadow:0 8px 26px rgba(0,0,0,.55);
+  box-shadow:0 8px 26px rgba(163,120,80,.30);
   transition:transform 1.4s ease 1.4s,opacity 1.4s ease 1.4s;
 }
 .pelmet .scallops{
   position:absolute;left:0;right:0;bottom:-22px;height:24px;
-  background:radial-gradient(circle at 12px -2px, #145041 20px, transparent 21px) repeat-x;
+  background:radial-gradient(circle at 12px -2px, #fbe0d6 20px, transparent 21px) repeat-x;
   background-size:44px 24px;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,.4));
+  filter:drop-shadow(0 4px 6px rgba(163,120,80,.28));
 }
 #curtainStage.open .pelmet{transform:translateY(-110%);opacity:0}
 
@@ -121,29 +127,34 @@ body.locked{overflow:hidden;height:100dvh}
 
 /* touch-to-open seal */
 #seal{
-  position:relative;z-index:6;text-align:center;color:var(--gold-pale);
+  position:relative;z-index:6;text-align:center;color:var(--gold-deep);
   cursor:pointer;user-select:none;
   animation:sealPulse 2.2s ease-in-out infinite;
   transition:opacity .6s ease, transform .6s ease;
 }
 #seal .ring{
-  width:120px;height:120px;margin:0 auto 14px;border-radius:50%;
+  width:126px;height:126px;margin:0 auto 16px;border-radius:50%;
   border:1.5px solid var(--gold);
   display:flex;align-items:center;justify-content:center;
   position:relative;
-  background:radial-gradient(circle,rgba(201,162,75,.12),transparent 70%);
-  box-shadow:0 0 30px rgba(201,162,75,.35), inset 0 0 24px rgba(201,162,75,.25);
+  background:radial-gradient(circle,#fffaf4 55%,rgba(255,255,255,.75) 100%);
+  box-shadow:0 12px 34px rgba(150,90,90,.28), 0 0 0 8px rgba(255,255,255,.35), inset 0 0 22px rgba(201,162,75,.22);
 }
 #seal .ring::before{
   content:"";position:absolute;inset:-9px;border-radius:50%;
-  border:1px dashed rgba(233,207,139,.55);
+  border:1px dashed rgba(163,120,44,.55);
   animation:spin 14s linear infinite;
 }
 #seal .mono{
-  font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--gold-bright);
-  text-shadow:0 0 18px rgba(233,207,139,.6);
+  font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--rose-deep);
+  text-shadow:0 2px 10px rgba(255,255,255,.9);
 }
-#seal p{font-family:'Marcellus',serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase}
+#seal p{
+  font-family:'Marcellus',serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--rose-deep);background:rgba(255,255,255,.75);
+  display:inline-block;padding:8px 18px;border-radius:999px;
+  border:1px solid rgba(201,162,75,.5);box-shadow:0 6px 18px rgba(150,90,90,.2);
+}
 @keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 #curtainStage.open #seal{opacity:0;transform:scale(1.35);pointer-events:none}
@@ -151,14 +162,17 @@ body.locked{overflow:hidden;height:100dvh}
 
 /* ─────────── INTRO AUTO-SEQUENCE ─────────── */
 #intro{
-  position:fixed;inset:0;z-index:90;
+  position:fixed;inset:0;z-index:90;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(120% 90% at 50% 0%, #17503e 0%, var(--emerald-deep) 62%);
+  background:radial-gradient(120% 90% at 50% 0%, #fffaf4 0%, var(--cream) 55%, #f8e2d4 100%);
   opacity:0;pointer-events:none;transition:opacity 1s ease;
   text-align:center;padding:24px;
 }
 #intro.show{opacity:1;pointer-events:auto}
 #intro.fadeout{opacity:0}
+#intro .introCorner{position:absolute;width:min(46vw,220px);opacity:.95}
+#intro .introCorner.tl{top:-10px;left:-14px}
+#intro .introCorner.tr{top:-10px;right:-14px;transform:scaleX(-1)}
 .introSlide{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);
   width:min(92vw,420px);
@@ -166,37 +180,38 @@ body.locked{overflow:hidden;height:100dvh}
 }
 .introSlide.on{opacity:1;transform:translate(-50%,-50%)}
 .bismillah{
-  font-family:'Amiri',serif;font-size:2rem;color:var(--gold-bright);
-  text-shadow:0 0 24px rgba(233,207,139,.45);line-height:1.9;
+  font-family:'Amiri',serif;font-size:2rem;color:var(--gold-deep);
+  text-shadow:0 2px 10px rgba(255,255,255,.8);line-height:1.9;
 }
 .introSlide .eyebrow{
-  font-family:'Marcellus',serif;color:var(--gold-pale);
+  font-family:'Marcellus',serif;color:var(--ink-soft);
   letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;margin-top:16px;
 }
 .introSlide .big{
-  font-family:'Great Vibes',cursive;color:var(--ivory);
+  font-family:'Great Vibes',cursive;color:var(--rose-deep);
   font-size:clamp(2.6rem,11vw,3.6rem);line-height:1.25;
-  text-shadow:0 4px 26px rgba(0,0,0,.45);
+  text-shadow:0 3px 14px rgba(255,255,255,.9);
 }
 .introSlide .amp{
-  font-family:'Great Vibes',cursive;color:var(--gold-bright);font-size:2.2rem;display:block;margin:2px 0;
+  font-family:'Great Vibes',cursive;color:var(--gold-deep);font-size:2.2rem;display:block;margin:2px 0;
 }
-.introSlide .sub{color:var(--gold-pale);font-size:1.05rem;letter-spacing:.12em;margin-top:10px;font-style:italic}
+.introSlide .sub{color:var(--ink-soft);font-size:1.05rem;letter-spacing:.12em;margin-top:10px;font-style:italic}
 
 /* ─────────── MAIN SCROLL PAGE ─────────── */
 #page{
   position:relative;z-index:10;overflow-x:clip;opacity:0;transition:opacity 1.2s ease;
   background:
-    radial-gradient(140% 60% at 50% 0%, #17503e 0%, transparent 55%),
-    var(--emerald-deep);
+    radial-gradient(140% 55% at 50% 0%, #fffaf4 0%, transparent 60%),
+    linear-gradient(180deg,var(--cream) 0%, #fdf0e4 45%, var(--cream-deep) 100%);
 }
 #page.show{opacity:1}
 .wrap{max-width:480px;margin:0 auto;padding:0 16px;width:100%}
 
 /* soft glowing orbs in background */
-.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.25;pointer-events:none;z-index:1}
-.orb.o1{width:260px;height:260px;background:var(--gold);top:8%;left:-90px;animation:orbFloat 11s ease-in-out infinite alternate}
-.orb.o2{width:300px;height:300px;background:var(--blush-deep);bottom:6%;right:-110px;animation:orbFloat 13s ease-in-out infinite alternate-reverse}
+.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none;z-index:1}
+.orb.o1{width:260px;height:260px;background:var(--blush);top:8%;left:-90px;animation:orbFloat 11s ease-in-out infinite alternate}
+.orb.o2{width:300px;height:300px;background:var(--butter);bottom:6%;right:-110px;animation:orbFloat 13s ease-in-out infinite alternate-reverse}
+.orb.o3{width:220px;height:220px;background:var(--sage);top:46%;right:-80px;animation:orbFloat 15s ease-in-out infinite alternate}
 @keyframes orbFloat{from{transform:translateY(-24px)}to{transform:translateY(24px)}}
 
 /* section base + reveal */
@@ -206,18 +221,26 @@ section{position:relative;padding:64px 0;z-index:10}
 .rev.d1{transition-delay:.12s}.rev.d2{transition-delay:.24s}.rev.d3{transition-delay:.36s}.rev.d4{transition-delay:.48s}
 
 /* HERO */
-#hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding-top:80px}
+#hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding-top:96px;overflow:hidden}
+/* big watercolor bouquets in the page's top corners, like a printed card */
+.pageCorner{position:absolute;top:-6px;width:min(50vw,240px);z-index:12;pointer-events:none}
+.pageCorner.tl{left:-14px}
+.pageCorner.tr{right:-14px;transform:scaleX(-1)}
+.pageCorner svg{width:100%;height:auto;animation:cornerBreathe 9s ease-in-out infinite}
+@keyframes cornerBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+
 .heroFrame{
-  position:relative;border:1.5px solid rgba(201,162,75,.55);border-radius:200px 200px 26px 26px;
+  position:relative;border:1.5px solid rgba(201,162,75,.6);border-radius:200px 200px 26px 26px;
   padding:60px 16px 42px;margin:0;
-  background:linear-gradient(180deg,rgba(250,246,236,.05),rgba(250,246,236,.02));
-  box-shadow:inset 0 0 60px rgba(201,162,75,.07);
+  background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.42));
+  box-shadow:0 16px 44px rgba(163,120,80,.16), inset 0 0 60px rgba(255,255,255,.55);
+  backdrop-filter:blur(2px);
 }
 .heroFrame::before{
-  content:"";position:absolute;inset:9px;border:1px solid rgba(233,207,139,.3);
+  content:"";position:absolute;inset:9px;border:1px solid rgba(201,162,75,.4);
   border-radius:192px 192px 20px 20px;pointer-events:none;
 }
-.cornerFlower{position:absolute;width:clamp(64px,20vw,88px);height:clamp(64px,20vw,88px);opacity:.95;z-index:2}
+.cornerFlower{position:absolute;width:clamp(64px,20vw,88px);height:clamp(64px,20vw,88px);opacity:.98;z-index:2}
 .cornerFlower.tl{top:-22px;left:-6px;transform:rotate(-8deg)}
 .cornerFlower.tr{top:-22px;right:-6px;transform:rotate(8deg) scaleX(-1)}
 .cornerFlower.bl{bottom:-18px;left:-6px;transform:rotate(190deg) scaleX(-1)}
@@ -225,76 +248,80 @@ section{position:relative;padding:64px 0;z-index:10}
 .cornerFlower svg{width:100%;height:100%;animation:flowerBreathe 5s ease-in-out infinite}
 @keyframes flowerBreathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.06) rotate(2deg)}}
 
-.heroBismillah{font-family:'Amiri',serif;color:var(--gold-bright);font-size:1.35rem;margin-bottom:18px;text-shadow:0 0 16px rgba(233,207,139,.35)}
-.heroEyebrow{font-family:'Marcellus',serif;color:var(--gold-pale);font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:20px}
+.heroBismillah{font-family:'Amiri',serif;color:var(--gold-deep);font-size:1.35rem;margin-bottom:14px}
+.heroSubBismillah{font-family:'Marcellus',serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.heroEyebrow{font-family:'Marcellus',serif;color:var(--ink-soft);font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:20px}
 .heroName{
-  font-family:'Great Vibes',cursive;color:var(--ivory);
-  font-size:clamp(2.4rem,12vw,3.8rem);line-height:1.2;overflow-wrap:break-word;
-  text-shadow:0 6px 28px rgba(0,0,0,.5);
+  font-family:'Great Vibes',cursive;color:var(--rose-deep);
+  font-size:clamp(2.2rem,10.5vw,3.6rem);line-height:1.2;overflow-wrap:break-word;
+  text-shadow:0 3px 16px rgba(255,255,255,.9);
 }
 .heroName.shimmer{
-  background:linear-gradient(100deg,var(--ivory) 35%,var(--gold-bright) 50%,var(--ivory) 65%);
+  background:linear-gradient(100deg,var(--rose-deep) 32%,var(--gold) 50%,var(--rose-deep) 68%);
   background-size:250% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;animation:shimmer 5s linear infinite;
 }
 @keyframes shimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
-.heroAmp{font-family:'Great Vibes',cursive;color:var(--gold-bright);font-size:2rem;margin:2px 0;display:block}
+.heroAmp{font-family:'Great Vibes',cursive;color:var(--gold-deep);font-size:2rem;margin:2px 0;display:block}
 .heroDate{
-  margin-top:26px;color:var(--gold-pale);font-family:'Marcellus',serif;
-  letter-spacing:.24em;font-size:.82rem;text-transform:uppercase;
+  margin-top:26px;color:var(--ink-soft);font-family:'Marcellus',serif;
+  letter-spacing:.18em;font-size:clamp(.68rem,3.2vw,.82rem);text-transform:uppercase;
 }
-.heroDate b{color:var(--gold-bright);font-weight:400}
+.heroDate b{color:var(--gold-deep);font-weight:400}
 .divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px 0 0}
 .divider .line{height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider .line:last-child{transform:scaleX(-1)}
-.divider .bud{color:var(--gold-bright);font-size:1rem;animation:budSpin 8s linear infinite}
+.divider .bud{color:var(--rose);font-size:1rem;animation:budSpin 8s linear infinite}
 @keyframes budSpin{to{transform:rotate(360deg)}}
 
 /* countdown */
 .count{display:flex;justify-content:center;gap:8px;margin-top:30px;width:100%}
 .count .cell{
   flex:1 1 0;min-width:0;max-width:78px;padding:12px 4px;
-  border:1px solid rgba(201,162,75,.45);border-radius:14px;
-  background:rgba(250,246,236,.05);backdrop-filter:blur(4px);
+  border:1px solid rgba(201,162,75,.5);border-radius:14px;
+  background:rgba(255,255,255,.66);box-shadow:0 6px 16px rgba(163,120,80,.10);
 }
-.count .num{font-family:'Marcellus',serif;font-size:clamp(1.1rem,5.5vw,1.5rem);color:var(--ivory)}
-.count .lbl{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);font-family:'Marcellus',serif;margin-top:4px}
-.scrollHint{margin-top:38px;color:var(--gold-pale);font-family:'Marcellus',serif;font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;animation:hintFloat 2s ease-in-out infinite}
+.count .num{font-family:'Marcellus',serif;font-size:clamp(1.1rem,5.5vw,1.5rem);color:var(--rose-deep)}
+.count .lbl{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-family:'Marcellus',serif;margin-top:4px}
+.scrollHint{margin-top:38px;color:var(--gold-deep);font-family:'Marcellus',serif;font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;animation:hintFloat 2s ease-in-out infinite}
 .scrollHint::after{content:"";display:block;width:1px;height:34px;margin:10px auto 0;background:linear-gradient(180deg,var(--gold),transparent)}
 @keyframes hintFloat{0%,100%{transform:translateY(0);opacity:.8}50%{transform:translateY(7px);opacity:1}}
 
-/* IVORY CARD SECTIONS */
+/* CARD SECTIONS */
 .card{
-  position:relative;background:linear-gradient(180deg,var(--ivory),var(--cream));
+  position:relative;background:linear-gradient(180deg,var(--ivory),#fff5ea);
   border-radius:26px;padding:40px 20px;box-shadow:var(--shadow);
-  border:1px solid rgba(201,162,75,.4);overflow:hidden;
+  border:1px solid rgba(201,162,75,.45);overflow:hidden;
 }
 .card::before{
-  content:"";position:absolute;inset:8px;border:1px solid rgba(201,162,75,.45);
+  content:"";position:absolute;inset:8px;border:1px solid rgba(201,162,75,.4);
   border-radius:20px;pointer-events:none;
 }
-.card .washTL,.card .washBR{position:absolute;width:170px;height:170px;border-radius:50%;filter:blur(40px);opacity:.35;pointer-events:none}
+.card .washTL,.card .washBR{position:absolute;width:170px;height:170px;border-radius:50%;filter:blur(40px);opacity:.45;pointer-events:none}
 .card .washTL{top:-60px;left:-60px;background:var(--blush)}
-.card .washBR{bottom:-60px;right:-60px;background:var(--gold-pale)}
+.card .washBR{bottom:-60px;right:-60px;background:var(--butter)}
+.card .sprig{position:absolute;width:74px;height:74px;opacity:.9;pointer-events:none;z-index:1}
+.card .sprig.a{top:-4px;right:-4px;transform:scaleX(-1)}
+.card .sprig.b{bottom:-4px;left:-4px;transform:rotate(180deg) scaleX(-1)}
 .secTitleWrap{text-align:center;margin-bottom:26px;position:relative;z-index:2}
-.secKicker{font-family:'Marcellus',serif;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:#9a7b33;margin-bottom:8px}
-.secTitle{font-family:'Great Vibes',cursive;font-size:2.5rem;color:var(--emerald);line-height:1.15}
+.secKicker{font-family:'Marcellus',serif;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+.secTitle{font-family:'Great Vibes',cursive;font-size:2.5rem;color:var(--rose-deep);line-height:1.15}
 .card p,.card li{position:relative;z-index:2}
 
 /* verse card */
 .arabic{
   font-family:'Amiri',serif;direction:rtl;text-align:center;
-  font-size:clamp(1.2rem,5.4vw,1.5rem);line-height:2.3;color:var(--emerald);word-break:keep-all;
+  font-size:clamp(1.2rem,5.4vw,1.5rem);line-height:2.3;color:var(--gold-deep);word-break:keep-all;
   padding:6px 4px;
 }
-.verseEn{text-align:center;font-size:1.06rem;line-height:1.8;color:#3c5a4b;font-style:italic;margin-top:14px}
-.verseRef{text-align:center;font-family:'Marcellus',serif;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#9a7b33;margin-top:14px}
+.verseEn{text-align:center;font-size:1.06rem;line-height:1.8;color:var(--ink-soft);font-style:italic;margin-top:14px}
+.verseRef{text-align:center;font-family:'Marcellus',serif;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);margin-top:14px}
 
 /* couple */
 .person{text-align:center;padding:12px 0;position:relative;z-index:2}
-.person .pname{font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--emerald);line-height:1.2;text-shadow:0 2px 12px rgba(18,70,53,.15)}
-.person .prole{font-family:'Marcellus',serif;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:#9a7b33;margin-top:8px}
-.person .pfam{font-size:1.05rem;color:#3c5a4b;margin-top:10px;font-style:italic}
+.person .pname{font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--rose-deep);line-height:1.2}
+.person .prole{font-family:'Marcellus',serif;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep);margin-top:8px}
+.person .pfam{font-size:1.05rem;color:var(--ink-soft);margin-top:10px;font-style:italic}
 .knot{
   display:flex;align-items:center;justify-content:center;gap:14px;margin:20px 0;position:relative;z-index:2;
 }
@@ -302,8 +329,8 @@ section{position:relative;padding:64px 0;z-index:10}
 .knot .kline:last-child{transform:scaleX(-1)}
 .knot .heart{
   width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:var(--blush-deep);
-  background:radial-gradient(circle,#fff8,transparent);
+  display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:var(--rose);
+  background:radial-gradient(circle,#fff,rgba(255,255,255,.2));
   animation:heartBeat 1.8s ease-in-out infinite;
 }
 @keyframes heartBeat{0%,100%{transform:scale(1)}12%{transform:scale(1.18)}24%{transform:scale(1)}36%{transform:scale(1.12)}48%{transform:scale(1)}}
@@ -311,59 +338,68 @@ section{position:relative;padding:64px 0;z-index:10}
 /* events */
 .event{position:relative;z-index:2;text-align:center;padding:8px 0 4px}
 .event + .event{margin-top:30px;padding-top:32px;border-top:1px dashed rgba(201,162,75,.6)}
-.evName{font-family:'Great Vibes',cursive;font-size:2.3rem;color:var(--emerald)}
-.evRow{margin-top:12px;font-size:1.08rem;color:#2e4a3d;line-height:1.75}
-.evRow b{color:var(--emerald);font-weight:600}
-.evNote{font-style:italic;color:#6b8577;font-size:.98rem;margin-top:6px}
+.evName{font-family:'Great Vibes',cursive;font-size:2.3rem;color:var(--rose-deep)}
+.evRow{margin-top:12px;font-size:1.08rem;color:var(--ink);line-height:1.75}
+.evRow b{color:var(--gold-deep);font-weight:600}
+.evNote{font-style:italic;color:var(--ink-soft);font-size:.98rem;margin-top:6px}
 .mapBtn{
   display:inline-flex;align-items:center;gap:9px;margin-top:18px;
   padding:12px 26px;border-radius:999px;text-decoration:none;
   font-family:'Marcellus',serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--ivory);background:linear-gradient(135deg,var(--emerald-soft),var(--emerald));
-  border:1px solid var(--gold);box-shadow:0 10px 24px rgba(18,70,53,.35);
+  color:#fff;background:linear-gradient(135deg,var(--rose),var(--rose-deep));
+  border:1px solid var(--gold);box-shadow:0 10px 22px rgba(185,107,116,.35);
   transition:transform .25s ease,box-shadow .25s ease;
   position:relative;overflow:hidden;
 }
 .mapBtn::after{
   content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
-  background:linear-gradient(100deg,transparent,rgba(233,207,139,.45),transparent);
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);
   transform:skewX(-20deg);animation:btnSheen 3.6s ease infinite;
 }
 @keyframes btnSheen{0%,60%{left:-80%}100%{left:140%}}
 .mapBtn:active{transform:scale(.96)}
-.mapPin{width:14px;height:14px;fill:var(--gold-bright)}
+.mapPin{width:14px;height:14px;fill:var(--butter)}
 
 /* near & dear */
 .dearList{list-style:none;display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
 .dearList li{
   text-align:center;padding:13px 16px;border-radius:14px;
-  background:rgba(255,255,255,.6);border:1px solid rgba(201,162,75,.35);
-  font-size:1.12rem;color:var(--emerald);letter-spacing:.02em;
+  background:linear-gradient(135deg,rgba(250,221,224,.55),rgba(248,227,168,.35));
+  border:1px solid rgba(201,162,75,.4);
+  font-size:1.12rem;color:var(--ink);letter-spacing:.02em;
 }
-.dearList li::before{content:"✿";color:var(--blush-deep);margin-right:9px;font-size:.85rem}
+.dearList li::before{content:"✿";color:var(--rose);margin-right:9px;font-size:.85rem}
 
 /* hadith band */
 #hadith .band{
-  text-align:center;color:var(--ivory);padding:10px 6px;
+  position:relative;text-align:center;padding:36px 22px;border-radius:26px;
+  background:linear-gradient(140deg,#fadde0,#fdf0e4 55%,#f8e3a8);
+  border:1px solid rgba(201,162,75,.5);box-shadow:var(--shadow);overflow:hidden;
 }
-#hadith .hArabicMark{font-family:'Amiri',serif;color:var(--gold-bright);font-size:2.2rem;line-height:1}
-#hadith .hText{font-size:1.35rem;font-style:italic;line-height:1.8;margin-top:10px;color:var(--gold-pale)}
-#hadith .hRef{font-family:'Marcellus',serif;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,230,196,.75);margin-top:14px}
+#hadith .band::before{
+  content:"";position:absolute;inset:8px;border:1px solid rgba(201,162,75,.4);border-radius:20px;pointer-events:none;
+}
+#hadith .hArabicMark{font-family:'Amiri',serif;color:var(--gold-deep);font-size:2.2rem;line-height:1;position:relative;z-index:2}
+#hadith .hText{font-size:1.35rem;font-style:italic;line-height:1.8;margin-top:10px;color:var(--ink);position:relative;z-index:2}
+#hadith .hRef{font-family:'Marcellus',serif;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-deep);margin-top:14px;position:relative;z-index:2}
 
 /* footer */
-footer{position:relative;z-index:10;text-align:center;padding:56px 20px 74px;color:var(--gold-pale)}
-footer .fNames{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--ivory);text-shadow:0 4px 20px rgba(0,0,0,.4)}
+footer{position:relative;z-index:10;text-align:center;padding:56px 20px 0;color:var(--ink-soft)}
+footer .fNames{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--rose-deep)}
 footer .fLine{font-family:'Marcellus',serif;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;margin-top:14px}
-footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:var(--gold-bright)}
+footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:var(--gold-deep)}
+/* garden arch scene at the very bottom */
+#garden{margin-top:26px;width:100%;line-height:0}
+#garden svg{width:100%;height:auto;display:block}
 
 /* sparkles */
 .sparkle{position:absolute;width:7px;height:7px;pointer-events:none;z-index:3}
 .sparkle::before{
-  content:"";position:absolute;inset:0;background:var(--gold-bright);
+  content:"";position:absolute;inset:0;background:var(--gold);
   clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);
   animation:twinkle var(--tw,3s) ease-in-out infinite;
 }
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(90deg)}}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:.9;transform:scale(1.1) rotate(90deg)}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01s!important}
@@ -375,6 +411,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
 <canvas id="petals"></canvas>
 <div class="orb o1"></div>
 <div class="orb o2"></div>
+<div class="orb o3"></div>
 
 <!-- ═══════════ CURTAINS ═══════════ -->
 <div id="curtainStage">
@@ -391,6 +428,8 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
 
 <!-- ═══════════ INTRO SEQUENCE ═══════════ -->
 <div id="intro" aria-hidden="true">
+  <div class="introCorner tl"></div>
+  <div class="introCorner tr"></div>
   <div class="introSlide" data-step="0">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <p class="eyebrow">In the name of Allah,<br>the Most Gracious, the Most Merciful</p>
@@ -411,6 +450,8 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
 
   <!-- HERO -->
   <section id="hero">
+    <div class="pageCorner tl"></div>
+    <div class="pageCorner tr"></div>
     <div class="wrap">
       <div class="heroFrame rev">
         <div class="cornerFlower tl"></div>
@@ -418,6 +459,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
         <div class="cornerFlower bl"></div>
         <div class="cornerFlower br"></div>
         <div class="heroBismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <p class="heroSubBismillah">(With Allah’s Blessings)</p>
         <p class="heroEyebrow">The Wedding Of</p>
         <h1 class="heroName shimmer">Mohd Imad Ali</h1>
         <span class="heroAmp">&amp;</span>
@@ -440,6 +482,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <div class="wrap">
       <div class="card rev">
         <div class="washTL"></div><div class="washBR"></div>
+        <div class="sprig a"></div><div class="sprig b"></div>
         <div class="secTitleWrap">
           <p class="secKicker">A Sign Of His Mercy</p>
           <h2 class="secTitle">From the Holy Qur’an</h2>
@@ -456,6 +499,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <div class="wrap">
       <div class="card rev">
         <div class="washTL"></div><div class="washBR"></div>
+        <div class="sprig a"></div><div class="sprig b"></div>
         <div class="secTitleWrap">
           <p class="secKicker">Two Souls, One Dua</p>
           <h2 class="secTitle">The Blessed Couple</h2>
@@ -480,6 +524,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <div class="wrap">
       <div class="card rev">
         <div class="washTL"></div><div class="washBR"></div>
+        <div class="sprig a"></div><div class="sprig b"></div>
         <div class="secTitleWrap">
           <p class="secKicker">With The Blessings Of Allah</p>
           <h2 class="secTitle">Wedding Events</h2>
@@ -513,6 +558,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <div class="wrap">
       <div class="card rev">
         <div class="washTL"></div><div class="washBR"></div>
+        <div class="sprig a"></div><div class="sprig b"></div>
         <div class="secTitleWrap">
           <p class="secKicker">With Love & Honour</p>
           <h2 class="secTitle">Near &amp; Dear</h2>
@@ -534,6 +580,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <div class="wrap">
       <div class="card rev">
         <div class="washTL"></div><div class="washBR"></div>
+        <div class="sprig a"></div><div class="sprig b"></div>
         <div class="secTitleWrap">
           <p class="secKicker">Our Prayer</p>
           <h2 class="secTitle">A Dua For The Couple</h2>
@@ -561,36 +608,145 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
     <p class="fNames rev d1">Imad &amp; Afsari</p>
     <p class="fLine rev d2">Awaiting your presence &amp; duas</p>
     <p class="fDua rev d3">جزاك الله خيرا</p>
+    <div id="garden"></div>
   </footer>
 </main>
 
 <script>
-/* ══════════════════ FLORAL SVG (corner bouquets) ══════════════════ */
-const FLOWER_SVG = `
+/* ══════════════════ FLORAL BUILDING BLOCKS ══════════════════ */
+const P={rose:'#e79aa2',roseDeep:'#cf7d87',blush:'#f6c3c7',cream:'#fbe6d4',peach:'#f5c08c',
+         butter:'#f6dd97',gold:'#c9a24b',white:'#fff6ee',
+         leaf:'#8fb488',leafDeep:'#5f8a63',leafLight:'#b6d0a6',stem:'#7ba374'};
+
+/* n-petal bloom */
+const bloom=(x,y,s,petal,centre,n=6,rot=0)=>
+  `<g transform="translate(${x},${y}) rotate(${rot}) scale(${s})">`+
+  Array.from({length:n},(_,i)=>`<ellipse cx="0" cy="-12" rx="7.6" ry="12.6" fill="${petal}" transform="rotate(${i*360/n})"/>`).join('')+
+  `<circle r="5.6" fill="${centre}"/><circle r="2.6" fill="${P.white}" opacity=".8"/></g>`;
+
+/* single leaf */
+const leaf=(x,y,rot,s,c)=>
+  `<path d="M0 0 q13 -5 20 -20 q-16 1 -20 20z" fill="${c}" transform="translate(${x},${y}) rotate(${rot}) scale(${s})"/>`;
+
+/* eucalyptus-style sprig: round leaves along a curve */
+const sprig=(x,y,rot,s,c)=>{
+  let out=`<g transform="translate(${x},${y}) rotate(${rot}) scale(${s})">
+    <path d="M0 0 q22 -8 42 -30" stroke="${P.stem}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  for(let i=0;i<6;i++){
+    const t=i/5, px=42*t, py=-30*t*t-6*t;
+    out+=`<ellipse cx="${px}" cy="${py-6}" rx="6.5" ry="5" fill="${c}" opacity="${.75+.25*t}"/>`;
+    out+=`<ellipse cx="${px-3}" cy="${py+6}" rx="5.5" ry="4.4" fill="${P.leafDeep}" opacity=".65"/>`;
+  }
+  return out+`</g>`;
+};
+
+/* ══ small corner bouquet used on the hero frame & cards ══ */
+const FLOWER_SVG=`
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none">
-    <path d="M20 100 Q40 70 62 52" stroke="#2e7457" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M34 96 Q52 78 72 66" stroke="#2e7457" stroke-width="2" stroke-linecap="round"/>
-    <path d="M30 88 q-14 -4 -18 -18 q16 2 18 18z" fill="#3d8a67"/>
-    <path d="M46 78 q-4 -16 8 -26 q6 16 -8 26z" fill="#57a67e"/>
-    <g transform="translate(66,46)">
-      ${[0,60,120,180,240,300].map(a=>`<ellipse cx="0" cy="-13" rx="8.5" ry="14" fill="#e8b4b8" transform="rotate(${a})"/>`).join('')}
-      <circle r="7" fill="#c9a24b"/><circle r="3.4" fill="#f3e6c4"/>
-    </g>
-    <g transform="translate(90,72) scale(.7)">
-      ${[0,72,144,216,288].map(a=>`<ellipse cx="0" cy="-12" rx="8" ry="13" fill="#f3d9db" transform="rotate(${a})"/>`).join('')}
-      <circle r="6" fill="#c9a24b"/>
-    </g>
-    <g transform="translate(42,58) scale(.5)">
-      ${[0,72,144,216,288].map(a=>`<ellipse cx="0" cy="-12" rx="8" ry="13" fill="#c98a90" transform="rotate(${a})"/>`).join('')}
-      <circle r="6" fill="#e9cf8b"/>
-    </g>
-    <circle cx="82" cy="52" r="3" fill="#e9cf8b"/>
-    <circle cx="54" cy="42" r="2.4" fill="#e9cf8b"/>
-    <circle cx="96" cy="88" r="2.6" fill="#e8b4b8"/>
-  </g>
+  <path d="M18 102 Q42 74 64 52" stroke="${P.stem}" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M32 98 Q52 80 74 66" stroke="${P.leafDeep}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  ${sprig(20,92,-30,.8,P.leaf)}
+  ${leaf(40,80,-40,1,P.leafLight)}
+  ${leaf(56,86,20,.85,P.leafDeep)}
+  ${bloom(66,46,1,P.blush,P.gold,6,10)}
+  ${bloom(92,70,.68,P.peach,P.roseDeep,5,25)}
+  ${bloom(44,60,.55,P.rose,P.butter,5,-15)}
+  ${bloom(86,44,.42,P.butter,P.gold,5,40)}
+  <circle cx="54" cy="40" r="2.6" fill="${P.butter}"/>
+  <circle cx="98" cy="90" r="2.8" fill="${P.blush}"/>
+  <circle cx="74" cy="30" r="2" fill="${P.rose}"/>
 </svg>`;
-document.querySelectorAll('.cornerFlower').forEach(el=>el.innerHTML=FLOWER_SVG);
+
+/* ══ big watercolor corner garland for the page's top corners ══ */
+const CORNER_SVG=`
+<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- trailing greenery -->
+  <path d="M6 6 Q70 40 118 96 Q150 134 168 186" stroke="${P.stem}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".85"/>
+  <path d="M6 6 Q90 22 150 54" stroke="${P.leafDeep}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
+  ${sprig(150,54,18,1.1,P.leaf)}
+  ${sprig(118,96,58,1.0,P.leafLight)}
+  ${sprig(60,20,10,1.15,P.leafDeep)}
+  ${sprig(154,150,72,.9,P.leaf)}
+  ${leaf(40,44,-30,1.3,P.leafLight)}
+  ${leaf(88,70,15,1.2,P.leaf)}
+  ${leaf(130,120,55,1.1,P.leafDeep)}
+  ${leaf(20,80,80,1,P.leaf)}
+  <!-- blooms -->
+  ${bloom(34,26,1.35,P.blush,P.gold,6,8)}
+  ${bloom(84,34,.95,P.peach,P.roseDeep,6,-20)}
+  ${bloom(24,72,.85,P.butter,P.gold,5,30)}
+  ${bloom(102,86,1.15,P.rose,P.butter,6,15)}
+  ${bloom(64,66,.7,P.white,P.gold,5,0)}
+  ${bloom(140,132,.95,P.blush,P.roseDeep,6,-10)}
+  ${bloom(120,168,.75,P.peach,P.gold,5,20)}
+  ${bloom(162,182,.6,P.butter,P.roseDeep,5,-30)}
+  <!-- berries -->
+  <circle cx="58" cy="46" r="3.2" fill="${P.butter}"/>
+  <circle cx="112" cy="60" r="2.8" fill="${P.rose}"/>
+  <circle cx="136" cy="104" r="3" fill="${P.blush}"/>
+  <circle cx="150" cy="160" r="2.6" fill="${P.butter}"/>
+</svg>`;
+
+/* ══ garden arch + picket fence scene for the footer ══ */
+const picket=(x)=>`<g transform="translate(${x},0)">
+  <path d="M0 22 h16 v40 h-16z" fill="#ffffff" stroke="#e6d7c4" stroke-width="1"/>
+  <path d="M0 22 l8 -12 l8 12z" fill="#ffffff" stroke="#e6d7c4" stroke-width="1"/></g>`;
+const fence=(x,n)=>{
+  let g=`<g transform="translate(${x},108)">`;
+  for(let i=0;i<n;i++) g+=picket(i*24);
+  g+=`<rect x="-2" y="32" width="${n*24}" height="6" rx="3" fill="#fff" stroke="#e6d7c4"/>
+      <rect x="-2" y="48" width="${n*24}" height="6" rx="3" fill="#fff" stroke="#e6d7c4"/></g>`;
+  return g;
+};
+const bush=(x,y,s)=>`<g transform="translate(${x},${y}) scale(${s})">
+  <ellipse cx="0" cy="0" rx="46" ry="26" fill="${P.leaf}"/>
+  <ellipse cx="-22" cy="6" rx="26" ry="18" fill="${P.leafDeep}" opacity=".8"/>
+  <ellipse cx="24" cy="4" rx="28" ry="19" fill="${P.leafLight}" opacity=".9"/>
+  ${bloom(-26,-8,.42,P.blush,P.butter,5,10)}
+  ${bloom(4,-14,.38,P.white,P.gold,5,-20)}
+  ${bloom(28,-6,.4,P.rose,P.butter,5,25)}
+  ${bloom(-6,4,.3,P.peach,P.gold,5,0)}
+</g>`;
+
+const GARDEN_SVG=`
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+  <!-- grass -->
+  <ellipse cx="200" cy="188" rx="120" ry="26" fill="#cfe0b6"/>
+  <ellipse cx="200" cy="192" rx="86" ry="16" fill="#bcd3a1" opacity=".8"/>
+  <!-- arch -->
+  <path d="M148 190 Q152 96 200 58" stroke="#c8a882" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M252 190 Q248 96 200 58" stroke="#c8a882" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M160 132 q26 -22 40 -34" stroke="#d8bd9c" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M240 132 q-26 -22 -40 -34" stroke="#d8bd9c" stroke-width="3" fill="none" stroke-linecap="round"/>
+  ${sprig(158,150,-70,.9,P.leaf)}
+  ${sprig(244,150,250,.9,P.leaf)}
+  ${sprig(176,96,-40,.8,P.leafLight)}
+  ${sprig(226,96,220,.8,P.leafLight)}
+  ${leaf(166,120,-60,1,P.leafDeep)}
+  ${leaf(236,120,240,1,P.leafDeep)}
+  ${bloom(200,54,.8,P.white,P.gold,6,0)}
+  ${bloom(178,74,.62,P.blush,P.roseDeep,6,15)}
+  ${bloom(224,76,.6,P.peach,P.gold,5,-15)}
+  ${bloom(158,112,.55,P.rose,P.butter,5,20)}
+  ${bloom(246,114,.55,P.butter,P.roseDeep,5,-20)}
+  ${bloom(150,156,.5,P.blush,P.gold,5,0)}
+  ${bloom(252,158,.5,P.white,P.roseDeep,5,10)}
+  <!-- fences -->
+  ${fence(-6,6)}
+  ${fence(262,6)}
+  <!-- bushes -->
+  ${bush(52,150,.9)}
+  ${bush(346,152,.9)}
+  ${bush(118,176,.6)}
+  ${bush(282,176,.6)}
+  <!-- little lanterns -->
+  <g transform="translate(172,150)"><rect x="-6" y="0" width="12" height="16" rx="3" fill="#fff" stroke="#e6d7c4"/><circle cx="0" cy="8" r="3" fill="${P.butter}"/></g>
+  <g transform="translate(230,152)"><rect x="-5" y="0" width="10" height="14" rx="3" fill="#fff" stroke="#e6d7c4"/><circle cx="0" cy="7" r="2.6" fill="${P.butter}"/></g>
+</svg>`;
+
+document.querySelectorAll('.cornerFlower,.sprig').forEach(el=>el.innerHTML=FLOWER_SVG);
+document.querySelectorAll('.pageCorner,.introCorner').forEach(el=>el.innerHTML=CORNER_SVG);
+document.getElementById('garden').innerHTML=GARDEN_SVG;
 
 /* ══════════════════ SPARKLES scattered on hero ══════════════════ */
 (function sprinkle(){
@@ -612,7 +768,7 @@ const ctx=canvas.getContext('2d');
 let W,H,petals=[];
 function resize(){W=canvas.width=innerWidth*devicePixelRatio;H=canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
 addEventListener('resize',resize);resize();
-const PCOLORS=['#e8b4b8','#f3d9db','#e9cf8b','#c98a90','#f3e6c4'];
+const PCOLORS=['#f2bfc4','#f7cba6','#f8e3a8','#d98a92','#ffffff','#b6d0a6'];
 function makePetal(seedTop){
   return{
     x:Math.random()*innerWidth,
@@ -624,7 +780,7 @@ function makePetal(seedTop){
     rot:Math.random()*Math.PI,
     rotSp:(Math.random()-.5)*.03,
     col:PCOLORS[Math.floor(Math.random()*PCOLORS.length)],
-    op:.5+Math.random()*.5
+    op:.45+Math.random()*.45
   };
 }
 for(let i=0;i<26;i++)petals.push(makePetal(true));
