@@ -147,10 +147,10 @@ body.locked{overflow:hidden;height:100dvh}
   border:1px dashed rgba(163,120,44,.55);
   animation:spin 14s linear infinite;
 }
-#seal .mono{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:2.6rem;color:var(--rose-deep);
-  text-shadow:0 2px 10px rgba(255,255,255,.9);
-}
+/* floral wreath emblem inside the seal (replaces the old monogram) */
+#seal .emblem{width:104px;height:104px;display:block}
+#seal .emblem svg{width:100%;height:100%;display:block;animation:wreathTurn 26s linear infinite}
+@keyframes wreathTurn{to{transform:rotate(360deg)}}
 #seal p{
   font-family:'Marcellus',serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
   color:var(--rose-deep);background:rgba(255,255,255,.75);
@@ -472,7 +472,7 @@ footer .fDua{font-family:'Amiri',serif;font-size:1.15rem;margin-top:18px;color:v
   <div class="tassel t1"><div class="rope"></div><div class="knot"></div><div class="fringe"></div></div>
   <div class="tassel t2"><div class="rope"></div><div class="knot"></div><div class="fringe"></div></div>
   <div id="seal" role="button" aria-label="Open invitation">
-    <div class="ring"><span class="mono">I&nbsp;·&nbsp;A</span></div>
+    <div class="ring"><div class="emblem"></div></div>
     <p>Touch to open</p>
   </div>
 </div>
@@ -795,7 +795,38 @@ const GARDEN_SVG=`
   <g transform="translate(230,152)"><rect x="-5" y="0" width="10" height="14" rx="3" fill="#fff" stroke="#e6d7c4"/><circle cx="0" cy="7" r="2.6" fill="${P.butter}"/></g>
 </svg>`;
 
+/* ══ floral wreath for the seal on the curtains ══ */
+const WREATH_SVG=(()=>{
+  const cx=50,cy=50,R=33;
+  let g='';
+  /* ring of leaves, laid tangentially around the circle */
+  for(let i=0;i<26;i++){
+    const a=i*Math.PI*2/26;
+    const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+    const deg=a*180/Math.PI+96;
+    g+=leaf(x,y,deg,i%2?.6:.72,i%3?P.leaf:P.leafDeep);
+  }
+  /* inner ring of smaller leaves for fullness */
+  for(let i=0;i<18;i++){
+    const a=i*Math.PI*2/18+.22;
+    g+=leaf(cx+(R-9)*Math.cos(a),cy+(R-9)*Math.sin(a),a*180/Math.PI+96,.46,P.leafLight);
+  }
+  /* three blooms spaced around the wreath */
+  g+=bloom(cx+R*Math.cos(Math.PI*0.5),cy+R*Math.sin(Math.PI*0.5),.82,P.blush,P.gold,6,0);
+  g+=bloom(cx+R*Math.cos(Math.PI*1.18),cy+R*Math.sin(Math.PI*1.18),.68,P.peach,P.roseDeep,5,20);
+  g+=bloom(cx+R*Math.cos(Math.PI*1.82),cy+R*Math.sin(Math.PI*1.82),.68,P.butter,P.gold,5,-20);
+  g+=bloom(cx+R*Math.cos(Math.PI*0.16),cy+R*Math.sin(Math.PI*0.16),.4,P.rose,P.butter,5,40);
+  g+=bloom(cx+R*Math.cos(Math.PI*0.86),cy+R*Math.sin(Math.PI*0.86),.4,P.white,P.gold,5,10);
+  /* small gold sparkle at the heart of the wreath */
+  g+=`<g transform="translate(${cx},${cy})">
+        <path d="M0 -13 L3.2 -3.2 L13 0 L3.2 3.2 L0 13 L-3.2 3.2 L-13 0 L-3.2 -3.2 Z" fill="${P.gold}" opacity=".9"/>
+        <circle r="2.2" fill="${P.butter}"/>
+      </g>`;
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${g}</svg>`;
+})();
+
 document.querySelectorAll('.cornerFlower,.sprig').forEach(el=>el.innerHTML=FLOWER_SVG);
+document.querySelector('#seal .emblem').innerHTML=WREATH_SVG;
 document.querySelectorAll('.pageCorner,.introCorner').forEach(el=>el.innerHTML=CORNER_SVG);
 document.getElementById('garden').innerHTML=GARDEN_SVG;
 
